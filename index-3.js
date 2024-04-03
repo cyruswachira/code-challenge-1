@@ -1,30 +1,37 @@
-function totalNetSalary(basicSalary , benefits){
 
-    let taxThreshold=24000
-    let taxRate=0.3
-    let nhifRate=0.025
-    let nssfRate=0.06
 
-    let grossSalary=basicSalary+benefits
+function calculateSalary(basicSalary, benefits) {
+    // Constants for tax rates and deductions
 
-    let taxableIncome=Math.max(0,grossSalary-taxThreshold)
-    let tax=taxableIncome > 0 ?taxableIncome * taxRate :0 ;
+    // Tax threshold for the year
+    const taxThreshold = 24000;  
+    // Tax rate (30%)
+    const taxRate = 0.3; 
+    // NHIF rate (2.5%) 
+    const nhifRate = 0.025; 
+    // NSSF rate (6%) 
+    const nssfRate = 0.06;  
 
-    let nhifDeductions=basicSalary * nhifRate
+    // Calculate gross salary
+    const grossSalary = basicSalary + benefits;
 
-    let nssfDeductions=basicSalary * nssfRate
+    // Calculate tax
+    const taxableIncome = Math.max(0, grossSalary - taxThreshold);
+    const tax = taxableIncome > 0 ? taxableIncome * taxRate : 0;
 
-    let netSalary=grossSalary - tax - nhifDeductions - nssfDeductions
+    // Calculate NHIF deductions
+    const nhifDeductions = basicSalary * nhifRate;
 
-    return{
-        'Gross Salary':grossSalary,
-        'Tax':tax,
-        'NHIF Deduction':nhifDeductions,
-        'NSSF Deduction':nssfDeductions,
-        'Net salary':netSalary
-        
-    }
+    // Calculate NSSF deductions
+    const nssfDeductions = basicSalary * nssfRate;
+
+    // Calculate net salary
+    const netSalary = grossSalary - tax - nhifDeductions - nssfDeductions;
+
+    return {
+
+        "Net Salary": netSalary}
     
 }
 
-totalNetSalary(25000,10000)
+console.log(calculateSalary(100000,25000));
